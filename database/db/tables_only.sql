@@ -59,6 +59,9 @@ CREATE TABLE bahan_baku (
 CREATE TABLE produk_jus (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nama_produk VARCHAR(100) NOT NULL,
+    kategori VARCHAR(50) NOT NULL DEFAULT 'juice',
+    ukuran VARCHAR(20) NOT NULL DEFAULT 'medium',
+    harga DECIMAL(10,2) NOT NULL DEFAULT 0,
     harga_jual DECIMAL(10,2) NOT NULL,
     deskripsi TEXT,
     status ENUM('active', 'inactive') DEFAULT 'active',
@@ -204,11 +207,11 @@ INSERT INTO bahan_baku (supplier_id, nama_bahan, satuan, harga_beli, stok_minimu
 (3, 'Gula Pasir', 'kg', 12000, 15, 40);
 
 -- Insert default produk jus
-INSERT INTO produk_jus (nama_produk, harga_jual, deskripsi) VALUES
-('Jus Jeruk Segar', 15000, 'Jus jeruk segar tanpa pengawet'),
-('Jus Apel Manis', 18000, 'Jus apel dengan rasa manis alami'),
-('Jus Mangga Tropis', 20000, 'Jus mangga dengan rasa tropis'),
-('Jus Mix Buah', 25000, 'Campuran berbagai buah segar');
+INSERT INTO produk_jus (nama_produk, kategori, ukuran, harga, harga_jual, deskripsi) VALUES
+('Jus Jeruk Segar', 'juice', 'medium', 15000, 15000, 'Jus jeruk segar tanpa pengawet'),
+('Jus Apel Manis', 'juice', 'large', 18000, 18000, 'Jus apel dengan rasa manis alami'),
+('Jus Mangga Tropis', 'smoothie', 'large', 20000, 20000, 'Jus mangga dengan rasa tropis'),
+('Jus Mix Buah', 'blend', 'large', 25000, 25000, 'Campuran berbagai buah segar');
 
 -- Insert default resep
 INSERT INTO resep_jus (produk_id, bahan_id, jumlah, satuan) VALUES
