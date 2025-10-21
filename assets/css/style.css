@@ -20,10 +20,17 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+}
+
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
     color: #333;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 /* ============================================================
@@ -39,8 +46,10 @@ body {
     background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
     overflow-y: auto;
+    overflow-x: hidden;
     z-index: 1000;
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+    scroll-behavior: smooth;
 }
 
 .sidebar-header {
@@ -76,6 +85,9 @@ body {
     color: white;
     text-decoration: none;
     transition: all 0.3s ease;
+    position: relative;
+    outline: none;
+    border: none;
 }
 
 .sidebar-menu a:hover, .sidebar-menu a.active {
@@ -477,6 +489,7 @@ textarea.form-control {
     .sidebar {
         transform: translateX(-100%);
         transition: transform 0.3s ease;
+        will-change: transform;
     }
 
     .sidebar.active {
@@ -485,10 +498,17 @@ textarea.form-control {
 
     .main-content {
         margin-left: 0;
+        transition: margin-left 0.3s ease;
     }
 
     .stats-row {
         grid-template-columns: 1fr;
+    }
+    
+    /* Prevent scroll jump on mobile */
+    body {
+        overflow-x: hidden;
+        position: relative;
     }
 }
 

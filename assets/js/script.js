@@ -20,17 +20,41 @@ function initSidebar() {
     const sidebar = document.querySelector('.sidebar');
     
     if (toggleBtn && sidebar) {
-        toggleBtn.addEventListener('click', function() {
+        toggleBtn.addEventListener('click', function(e) {
+            e.preventDefault();
             sidebar.classList.toggle('active');
         });
     }
 
-    // Highlight active menu
-    const currentPath = window.location.pathname;
+    // Prevent scroll jump on menu clicks
     const menuLinks = document.querySelectorAll('.sidebar-menu a');
-    
     menuLinks.forEach(link => {
-        if (link.getAttribute('href') && currentPath.includes(link.getAttribute('href'))) {
+        link.addEventListener('click', function(e) {
+            // Prevent default scroll behavior
+            e.preventDefault();
+            
+            // Get the href
+            const href = this.getAttribute('href');
+            
+            // If it's a valid URL, navigate to it
+            if (href && href !== '#' && !href.includes('javascript:')) {
+                // Remove active class from all links
+                menuLinks.forEach(l => l.classList.remove('active'));
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Navigate to the URL
+                window.location.href = href;
+            }
+        });
+    });
+
+    // Highlight active menu based on current path
+    const currentPath = window.location.pathname;
+    menuLinks.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href && currentPath.includes(href)) {
             link.classList.add('active');
         }
     });
