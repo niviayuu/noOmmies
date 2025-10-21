@@ -44,8 +44,8 @@ CREATE TABLE bahan_baku (
     nama_bahan VARCHAR(100) NOT NULL,
     satuan VARCHAR(20) NOT NULL,
     harga_beli DECIMAL(10,2) NOT NULL,
-    stok_minimal INT DEFAULT 10,
-    stok_sekarang INT DEFAULT 0,
+    stok_minimum INT DEFAULT 10,
+    stok INT DEFAULT 0,
     tanggal_expired DATE,
     status ENUM('active', 'inactive') DEFAULT 'active',
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -142,10 +142,17 @@ CREATE TABLE notifikasi (
 -- ========================================
 -- TABEL WASTE MANAGEMENT
 -- ========================================
-CREATE TABLE waste_records (
+CREATE TABLE waste_categories (
     id INT AUTO_INCREMENT PRIMARY KEY,
+    nama_kategori VARCHAR(100) NOT NULL,
+    deskripsi TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE waste_management (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    kategori_id INT NOT NULL,
     nama_item VARCHAR(100) NOT NULL,
-    kategori VARCHAR(100) NOT NULL,
     jumlah DECIMAL(10,2) NOT NULL,
     satuan VARCHAR(20) NOT NULL,
     harga_per_unit DECIMAL(10,2) NOT NULL,
@@ -153,7 +160,23 @@ CREATE TABLE waste_records (
     tanggal_waste DATE NOT NULL,
     alasan TEXT,
     status ENUM('pending', 'approved', 'rejected') DEFAULT 'pending',
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_by INT,
+    approved_by INT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (kategori_id) REFERENCES waste_categories(id) ON DELETE CASCADE,
+    FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL,
+    FOREIGN KEY (approved_by) REFERENCES users(id) ON DELETE SET NULL
+);
+
+CREATE TABLE waste_disposal (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    waste_id INT NOT NULL,
+    metode_disposal ENUM('buang', 'daur_ulang', 'donasi', 'lainnya') NOT NULL,
+    lokasi_disposal VARCHAR(200),
+    tanggal_disposal DATE NOT NULL,
+    catatan TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (waste_id) REFERENCES waste_management(id) ON DELETE CASCADE
 );
 
 -- ========================================
@@ -173,7 +196,7 @@ INSERT INTO supplier (nama_supplier, alamat, no_telepon, email, kontak_person) V
 ('Supplier Gula', 'Jl. Gula Manis No. 789', '021-11223344', 'gula@supplier.com', 'Ahmad Wijaya');
 
 -- Insert default bahan baku
-INSERT INTO bahan_baku (supplier_id, nama_bahan, satuan, harga_beli, stok_minimal, stok_sekarang) VALUES
+INSERT INTO bahan_baku (supplier_id, nama_bahan, satuan, harga_beli, stok_minimum, stok) VALUES
 (1, 'Jeruk', 'kg', 15000, 10, 50),
 (1, 'Apel', 'kg', 20000, 5, 30),
 (1, 'Mangga', 'kg', 18000, 8, 25),
@@ -209,6 +232,13 @@ INSERT INTO notifikasi (judul, pesan, tipe) VALUES
 ('Selamat Datang', 'Selamat datang di sistem inventory management noÖmmies!', 'success'),
 ('Update Sistem', 'Sistem telah diperbarui dengan fitur terbaru.', 'info'),
 ('Pengingat Stok', 'Periksa stok bahan baku secara berkala.', 'warning');
+
+-- Insert default waste categories
+INSERT INTO waste_categories (nama_kategori, deskripsi) VALUES
+('Buah Busuk', 'Buah-buahan yang sudah tidak layak konsumsi'),
+('Susu Expired', 'Susu yang sudah melewati tanggal expired'),
+('Kemasan Rusak', 'Kemasan yang rusak atau tidak layak pakai'),
+('Lainnya', 'Kategori lainnya untuk waste management');
 
 -- ========================================
 -- COMPLETION MESSAGE
