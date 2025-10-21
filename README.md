@@ -1,319 +1,177 @@
-# SISTEM MANAJEMEN KEDAI JUS 🍹
+# noÖmmies - Sistem Inventory Management Kedai Jus Buah
 
-Sistem manajemen lengkap untuk kedai jus yang mencakup manajemen bahan baku, produk, stok, penjualan, dan laporan.
+## Deskripsi
+Sistem inventory management untuk kedai jus buah yang dibangun dengan CodeIgniter 3. Sistem ini mencakup manajemen bahan baku, produk jus, penjualan, laporan, dan waste management.
 
-## 🎯 Fitur Utama
+## Fitur Utama
 
-### 1. **Master Data**
-- ✅ Manajemen Supplier
-- ✅ Manajemen Bahan Baku
-- ✅ Manajemen Produk Jus
-- ✅ Manajemen Resep Jus
+### 🔐 Authentication & Authorization
+- Login/Register dengan role-based access control
+- 3 Level user: Admin, Owner, Karyawan
+- Session management yang aman
 
-### 2. **Manajemen Stok**
-- ✅ Input Stok Masuk (Pembelian)
-- ✅ Pengurangan Stok Otomatis (Penjualan)
-- ✅ Notifikasi Stok Menipis
-- ✅ Peringatan Bahan Mendekati Expired
+### 📊 Dashboard
+- Statistik real-time
+- Grafik penjualan
+- Notifikasi sistem
+- Quick access ke fitur utama
 
-### 3. **Manajemen Penjualan**
-- ✅ Input Transaksi Penjualan
-- ✅ Sistem Keranjang Belanja
-- ✅ Multiple Payment Methods (Cash, Transfer, QRIS, Debit)
-- ✅ Invoice / Struk Digital
+### 🛒 Master Data
+- **Produk Jus**: Manajemen produk jus dengan kategori dan harga
+- **Bahan Baku**: Manajemen bahan baku dengan stok dan supplier
+- **Supplier**: Data supplier bahan baku
+- **Users**: Manajemen pengguna sistem
 
-### 4. **Laporan & Analisis**
-- ✅ Laporan Penjualan (Harian/Bulanan)
-- ✅ Laporan Pembelian Bahan Baku
-- ✅ Laporan Stok Terkini
-- ✅ Produk Terlaris
-- ✅ Grafik Penjualan
+### 💰 Transaksi
+- **Penjualan**: Input penjualan dengan detail produk
+- **Stok Masuk**: Input stok masuk bahan baku
+- **Waste Management**: Manajemen waste/sampah
 
-### 5. **Notifikasi & Pengingat**
-- ✅ Notifikasi Stok Menipis
-- ✅ Notifikasi Bahan Expired
-- ✅ Pengingat Input Bahan
-- ✅ Dashboard Alerts
+### 📈 Laporan
+- **Laporan Penjualan**: Laporan penjualan dengan filter tanggal
+- **Laporan Stok**: Laporan stok dengan status alert
+- **Laporan Pembelian**: Laporan pembelian bahan baku
+- **Laporan Waste**: Laporan waste management
 
-### 6. **User Management**
-- ✅ Role-Based Access Control (Admin, Owner, Karyawan)
-- ✅ Login & Registration
-- ✅ User Profile Management
-- ✅ Approval System untuk Registrasi
+### 🔔 Monitoring
+- **Stok Menipis**: Alert bahan baku dengan stok menipis
+- **Mendekati Expired**: Alert bahan baku yang akan expired
+- **Notifikasi**: Sistem notifikasi real-time
 
-### 7. **Dashboard Interaktif**
-- ✅ Statistik Real-time
-- ✅ Grafik Penjualan
-- ✅ Quick Alerts
-- ✅ Recent Transactions
+## Teknologi yang Digunakan
 
-## 🛠️ Teknologi
+- **Backend**: PHP 7.4+ dengan CodeIgniter 3
+- **Database**: MySQL 5.7+ / MariaDB 10.2+
+- **Frontend**: HTML5, CSS3, JavaScript, Bootstrap 4
+- **Icons**: Font Awesome 6
+- **Charts**: Chart.js
+- **Tables**: DataTables
 
-- **Framework:** CodeIgniter 3
-- **Database:** MySQL 5.7+
-- **Frontend:** HTML5, CSS3, JavaScript
-- **Chart:** Chart.js
-- **Icons:** Font Awesome 6
-- **DataTables:** jQuery DataTables
+## Instalasi
 
-## 📋 Persyaratan Sistem
+### Prerequisites
+- PHP 7.4 atau lebih baru
+- MySQL 5.7+ atau MariaDB 10.2+
+- Web server (Apache/Nginx)
+- XAMPP/WAMP/LAMP (recommended)
 
-- PHP 7.2 atau lebih tinggi
-- MySQL 5.7 atau lebih tinggi
-- Apache/Nginx Web Server
-- PHP Extensions:
-  - mysqli
-  - mbstring
-  - json
-  - session
+### Setup Database
 
-## 🚀 Instalasi
+1. **Clone repository:**
+   ```bash
+   git clone https://github.com/niviayuu/noOmmies.git
+   cd noOmmies
+   ```
 
-### 1. Clone/Download Project
+2. **Setup database:**
+   ```bash
+   cd database/db
+   mysql -u root -p < kedai_jus_complete.sql
+   ```
 
-```bash
-git clone https://github.com/yourusername/kedai-jus.git
-cd kedai-jus
-```
+3. **Konfigurasi database:**
+   Edit `application/config/database.php`:
+   ```php
+   $db['default']['hostname'] = 'localhost';
+   $db['default']['username'] = 'root';
+   $db['default']['password'] = 'your_password';
+   $db['default']['database'] = 'kedai_jus';
+   ```
 
-Atau extract file ZIP ke folder `htdocs/jusbaru` (untuk XAMPP) atau `www/jusbaru` (untuk Laragon).
+4. **Akses aplikasi:**
+   - URL: `http://localhost/noOmmies/`
+   - Login: `admin@kedaijus.com`
+   - Password: `password`
 
-### 2. Import Database
+## Login Default
 
-1. Buka phpMyAdmin
-2. Buat database baru dengan nama `kedai_jus`
-3. Import file `database/kedai_jus.sql`
-4. Database akan otomatis terisi dengan:
-   - Struktur tabel lengkap
-   - Views untuk laporan
-   - Triggers untuk automasi
-   - Stored Procedures
-   - Data sample (users, supplier, bahan baku, produk)
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@kedaijus.com | password |
+| Owner | owner@kedaijus.com | password |
+| Karyawan | karyawan@kedaijus.com | password |
 
-### 3. Konfigurasi Database
+## Struktur Database
 
-Edit file `application/config/database.php`:
-
-```php
-'hostname' => 'localhost',
-'username' => 'root',        // Sesuaikan dengan username MySQL Anda
-'password' => '',            // Sesuaikan dengan password MySQL Anda
-'database' => 'kedai_jus',
-```
-
-### 4. Konfigurasi Base URL
-
-Edit file `application/config/config.php`:
-
-```php
-$config['base_url'] = 'http://localhost/jusbaru/';
-// Sesuaikan dengan URL project Anda
-```
-
-### 5. Pastikan File/Folder Permission (Linux/Mac)
-
-```bash
-chmod -R 755 application/cache
-chmod -R 755 application/logs
-chmod -R 755 assets
-```
-
-### 6. Jalankan Aplikasi
-
-Buka browser dan akses:
-```
-http://localhost/jusbaru/
-```
-
-## 👤 Default User Accounts
-
-Sistem sudah dilengkapi dengan 3 akun default:
-
-### Admin
-- Email: `admin@kedaijus.com`
-- Password: `password`
-- Akses: Full access ke semua fitur
-
-### Owner
-- Email: `owner@kedaijus.com`
-- Password: `password`
-- Akses: Semua fitur kecuali pengaturan sistem
-
-### Karyawan
-- Email: `karyawan@kedaijus.com`
-- Password: `password`
-- Akses: Penjualan dan laporan (terbatas)
-
-## 📂 Struktur Project
-
-```
-jusbaru/
-├── application/
-│   ├── controllers/      # Controllers
-│   │   ├── Auth.php
-│   │   ├── Dashboard.php
-│   │   ├── Supplier.php
-│   │   ├── Bahan_baku.php
-│   │   ├── Produk_jus.php
-│   │   ├── Stok_masuk.php
-│   │   ├── Penjualan.php
-│   │   ├── Laporan.php
-│   │   ├── Notifikasi.php
-│   │   └── Users.php
-│   ├── models/           # Models
-│   │   ├── User_model.php
-│   │   ├── Supplier_model.php
-│   │   ├── Bahan_baku_model.php
-│   │   ├── Produk_jus_model.php
-│   │   ├── Resep_jus_model.php
-│   │   ├── Stok_masuk_model.php
-│   │   ├── Penjualan_model.php
-│   │   ├── Detail_penjualan_model.php
-│   │   └── Notifikasi_model.php
-│   ├── views/            # Views
-│   │   ├── templates/    # Header, Sidebar, Footer
-│   │   ├── auth/         # Login, Register
-│   │   ├── dashboard/
-│   │   ├── supplier/
-│   │   └── ...
-│   ├── core/
-│   │   └── MY_Controller.php  # Base Controllers
-│   └── config/           # Konfigurasi
-├── assets/
-│   ├── css/
-│   │   └── style.css     # Custom CSS
-│   └── js/
-│       └── script.js     # Custom JavaScript
-├── database/
-│   └── kedai_jus.sql     # Database Schema
-└── index.php
-```
-
-## 🎨 Fitur Highlights
-
-### Automasi Stok
-- Stok bahan baku **otomatis bertambah** saat input stok masuk
-- Stok bahan baku **otomatis berkurang** saat penjualan (berdasarkan resep)
-- Sistem trigger database memastikan konsistensi data
-
-### Notifikasi Cerdas
-- Auto-generate notifikasi stok menipis (berdasarkan stok minimum)
-- Auto-generate notifikasi bahan expired (H-3)
-- Notifikasi muncul saat login
-
-### Role-Based Access
-- **Admin**: Full access semua fitur
-- **Owner**: Akses semua fitur kecuali system settings
-- **Karyawan**: Akses terbatas (penjualan dan laporan)
-
-### Laporan Lengkap
-- Laporan penjualan dengan filter tanggal
-- Laporan pembelian bahan baku
-- Laporan stok real-time
-- Produk terlaris
-- Grafik penjualan interaktif
-
-## 🔐 Keamanan
-
-- ✅ Password hashing dengan `bcrypt`
-- ✅ Session management
-- ✅ CSRF protection (optional, dapat diaktifkan)
-- ✅ XSS filtering
-- ✅ SQL injection prevention (Query Builder)
-- ✅ Role-based access control
-
-## 📊 Database Design
+### Tabel Utama
+- `users` - Data pengguna sistem
+- `supplier` - Data supplier bahan baku
+- `bahan_baku` - Data bahan baku
+- `produk_jus` - Data produk jus
+- `resep_jus` - Resep pembuatan jus
+- `stok_masuk` - Data stok masuk
+- `penjualan` - Data penjualan
+- `detail_penjualan` - Detail penjualan
+- `notifikasi` - Notifikasi sistem
+- `waste_records` - Data waste management
 
 ### Fitur Database
-- **Views**: Untuk laporan yang kompleks
-- **Triggers**: Automasi stok dan notifikasi
-- **Stored Procedures**: Generate notifikasi berkala
-- **Foreign Keys**: Menjaga integritas data
-- **Indexes**: Optimasi query
+- **Triggers**: Auto-update stok setelah transaksi
+- **Views**: View untuk laporan
+- **Stored Procedures**: Procedure untuk query khusus
+- **Foreign Keys**: Relasi antar tabel
 
-### Relasi Utama
-```
-users ─┬─> stok_masuk.created_by
-       └─> penjualan.user_id
+## Role & Permission
 
-supplier ─┬─> bahan_baku.supplier_id
-          └─> stok_masuk.supplier_id
+### Admin
+- Full access ke semua fitur
+- Manajemen user
+- Konfigurasi sistem
 
-bahan_baku ─┬─> resep_jus.bahan_id
-            └─> stok_masuk.bahan_id
+### Owner
+- Full access ke semua fitur kecuali manajemen user
+- Laporan lengkap
+- Waste management
 
-produk_jus ─┬─> resep_jus.produk_id
-            └─> detail_penjualan.produk_id
+### Karyawan
+- Read-only access ke master data
+- Input penjualan
+- Lihat laporan penjualan dan stok
+- Monitoring stok menipis dan expired
 
-penjualan ──> detail_penjualan.penjualan_id
-```
+## Screenshots
 
-## 🐛 Troubleshooting
+### Dashboard
+- Statistik real-time
+- Grafik penjualan
+- Quick access menu
 
-### Error: "A PHP Error was encountered"
-- Pastikan PHP version >= 7.2
-- Cek log di `application/logs/`
+### Login Page
+- Modern design dengan gradient background
+- Responsive layout
+- Form validation
 
-### Database Connection Error
-- Cek konfigurasi database di `application/config/database.php`
-- Pastikan MySQL service running
-- Pastikan database `kedai_jus` sudah dibuat dan diimport
+### Master Data
+- CRUD operations
+- Data tables dengan search dan filter
+- Role-based access control
 
-### CSS/JS Not Loading
-- Cek `base_url` di `application/config/config.php`
-- Pastikan folder `assets/` bisa diakses
+## Contributing
 
-### Session Error
-- Pastikan `sess_save_path` sudah di-set dengan benar
-- Cek permission folder temporary
+1. Fork repository
+2. Create feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
 
-## 📝 TODO / Future Enhancements
+## License
 
-- [ ] WhatsApp API Integration untuk notifikasi
-- [ ] Export laporan ke Excel/PDF
-- [ ] FIFO/FEFO Stock Management
-- [ ] Point of Sale (POS) System
-- [ ] Customer Management
-- [ ] Loyalty Program
-- [ ] Multi-branch Support
-- [ ] Mobile App Integration
+Distributed under the MIT License. See `LICENSE` for more information.
 
-## 👨‍💻 Development
+## Contact
 
-Untuk development:
+- **Developer**: Nivia Ayu Andini
+- **Email**: nivia@example.com
+- **GitHub**: [@niviayuu](https://github.com/niviayuu)
 
-1. Set environment ke development di `index.php`:
-```php
-define('ENVIRONMENT', 'development');
-```
+## Acknowledgments
 
-2. Enable database debug di `application/config/database.php`:
-```php
-'db_debug' => TRUE,
-```
-
-3. Enable error logging di `application/config/config.php`:
-```php
-$config['log_threshold'] = 4;
-```
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome!
-
-## 📧 Contact
-
-Untuk pertanyaan atau support, silakan hubungi:
-- Email: support@kedaijus.com
-- Website: https://kedaijus.com
+- CodeIgniter Framework
+- Bootstrap CSS Framework
+- Font Awesome Icons
+- Chart.js Library
+- DataTables Plugin
 
 ---
 
-**Happy Coding! 🍹**
-
-Dibuat dengan ❤️ untuk mempermudah manajemen Kedai Jus
-
+**noÖmmies** - Sistem Inventory Management Kedai Jus Buah 🍊🥤
