@@ -39,7 +39,7 @@
                             </span>
                         </td>
                         <td><?php echo $bahan->stok_minimum . ' ' . $bahan->satuan; ?></td>
-                        <td>Rp <?php echo number_format($bahan->harga_satuan, 0, ',', '.'); ?></td>
+                        <td>Rp <?php echo number_format($bahan->harga_satuan ?? 0, 0, ',', '.'); ?></td>
                         <td>
                             <?php if ($bahan->tanggal_expired): ?>
                                 <?php 

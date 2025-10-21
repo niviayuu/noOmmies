@@ -34,10 +34,10 @@
                                 <?php echo $stok->jumlah . ' ' . $stok->satuan; ?>
                             </span>
                         </td>
-                        <td>Rp <?php echo number_format($stok->harga_satuan, 0, ',', '.'); ?></td>
+                        <td>Rp <?php echo number_format($stok->harga_satuan ?? 0, 0, ',', '.'); ?></td>
                         <td>
                             <strong style="color: var(--primary-color);">
-                                Rp <?php echo number_format($stok->total_harga, 0, ',', '.'); ?>
+                                Rp <?php echo number_format($stok->total_harga ?? 0, 0, ',', '.'); ?>
                             </strong>
                         </td>
                         <td><?php echo $stok->no_faktur ?: '-'; ?></td>
@@ -67,7 +67,7 @@
                             foreach ($stok_list as $s) {
                                 $total += $s->total_harga;
                             }
-                            echo number_format($total, 0, ',', '.'); 
+                            echo number_format($total ?? 0, 0, ',', '.'); 
                             ?>
                         </td>
                     </tr>

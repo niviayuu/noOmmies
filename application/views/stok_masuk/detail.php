@@ -83,7 +83,7 @@
                 <tr>
                     <td style="width: 200px; padding: 12px; font-weight: 600;">Harga Satuan</td>
                     <td style="padding: 12px; text-align: right; font-size: 16px;">
-                        Rp <?php echo number_format($stok->harga_satuan, 0, ',', '.'); ?>
+                        Rp <?php echo number_format($stok->harga_satuan ?? 0, 0, ',', '.'); ?>
                     </td>
                 </tr>
                 <tr>
@@ -95,7 +95,7 @@
                 <tr style="background: #f8f9fa; font-weight: bold; border-top: 2px solid #dee2e6;">
                     <td style="padding: 15px; font-size: 18px;">TOTAL HARGA</td>
                     <td style="padding: 15px; text-align: right; font-size: 20px; color: var(--success-color);">
-                        Rp <?php echo number_format($stok->total_harga, 0, ',', '.'); ?>
+                        Rp <?php echo number_format($stok->total_harga ?? 0, 0, ',', '.'); ?>
                     </td>
                 </tr>
             </table>

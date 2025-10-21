@@ -141,9 +141,9 @@
                             <tr>
                                 <td><?php echo $no++; ?></td>
                                 <td><?php echo $item->nama_bahan; ?></td>
-                                <td><?php echo number_format($item->stok, 0, ',', '.'); ?></td>
+                                <td><?php echo number_format($item->stok ?? 0, 0, ',', '.'); ?></td>
                                 <td><?php echo $item->satuan; ?></td>
-                                <td>Rp <?php echo number_format($item->harga_satuan, 0, ',', '.'); ?></td>
+                                <td>Rp <?php echo number_format($item->harga_satuan ?? 0, 0, ',', '.'); ?></td>
                                 <td>
                                     <?php if ($item->tanggal_expired): ?>
                                         <?php echo date('d/m/Y', strtotime($item->tanggal_expired)); ?>

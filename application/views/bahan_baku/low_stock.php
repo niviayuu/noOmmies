@@ -45,7 +45,7 @@
                                 <?php echo ($selisih > 0 ? '-' : '+') . abs($selisih) . ' ' . $bahan->satuan; ?>
                             </span>
                         </td>
-                        <td>Rp <?php echo number_format($bahan->harga_satuan, 0, ',', '.'); ?></td>
+                        <td>Rp <?php echo number_format($bahan->harga_satuan ?? 0, 0, ',', '.'); ?></td>
                         <td>
                             <div style="display: flex; gap: 5px; align-items: center;">
                                 <a href="<?php echo site_url('stok_masuk/tambah'); ?>" 

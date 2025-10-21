@@ -51,7 +51,7 @@
                     </tr>
                     <tr>
                         <td style="padding: 10px; font-weight: 600;">Harga Satuan</td>
-                        <td style="padding: 10px;">Rp <?php echo number_format($bahan->harga_satuan, 0, ',', '.'); ?></td>
+                        <td style="padding: 10px;">Rp <?php echo number_format($bahan->harga_satuan ?? 0, 0, ',', '.'); ?></td>
                     </tr>
                     <tr>
                         <td style="padding: 10px; font-weight: 600;">Tanggal Expired</td>
@@ -127,8 +127,8 @@
                             <td><?php echo date('d M Y', strtotime($history->tanggal_masuk)); ?></td>
                             <td><?php echo $history->nama_supplier ?: '-'; ?></td>
                             <td style="text-align: right;"><?php echo $history->jumlah; ?></td>
-                            <td style="text-align: right;">Rp <?php echo number_format($history->harga_satuan, 0, ',', '.'); ?></td>
-                            <td style="text-align: right;">Rp <?php echo number_format($history->total_harga, 0, ',', '.'); ?></td>
+                            <td style="text-align: right;">Rp <?php echo number_format($history->harga_satuan ?? 0, 0, ',', '.'); ?></td>
+                            <td style="text-align: right;">Rp <?php echo number_format($history->total_harga ?? 0, 0, ',', '.'); ?></td>
                         </tr>
                         <?php endforeach; ?>
                     </tbody>
