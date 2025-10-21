@@ -111,9 +111,9 @@
     </button>
     
     <div class="invoice-header">
-        <h1>🍹 KEDAI JUS</h1>
+        <h1>🍋 noÖmmies</h1>
         <p>Jl. Contoh No. 123, Jakarta</p>
-        <p>Telp: 021-12345678 | Email: info@kedaijus.com</p>
+        <p>Telp: 021-12345678 | Email: info@noommies.com</p>
     </div>
     
     <h2 style="text-align: center; margin: 20px 0;">INVOICE</h2>
