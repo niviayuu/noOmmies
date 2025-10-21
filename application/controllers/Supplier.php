@@ -31,13 +31,13 @@ class Supplier extends CI_Controller {
     public function tambah() {
         if ($this->input->post()) {
             $this->form_validation->set_rules('nama_supplier', 'Nama Supplier', 'required');
-            $this->form_validation->set_rules('no_hp', 'No HP', 'required');
+            $this->form_validation->set_rules('no_telepon', 'No HP', 'required');
 
             if ($this->form_validation->run()) {
                 $data = array(
                     'nama_supplier' => $this->input->post('nama_supplier'),
                     'alamat' => $this->input->post('alamat'),
-                    'no_hp' => $this->input->post('no_hp'),
+                    'no_telepon' => $this->input->post('no_telepon'),
                     'email' => $this->input->post('email'),
                     'keterangan' => $this->input->post('keterangan'),
                     'status' => 'active'
@@ -73,13 +73,13 @@ class Supplier extends CI_Controller {
 
         if ($this->input->post()) {
             $this->form_validation->set_rules('nama_supplier', 'Nama Supplier', 'required');
-            $this->form_validation->set_rules('no_hp', 'No HP', 'required');
+            $this->form_validation->set_rules('no_telepon', 'No HP', 'required');
 
             if ($this->form_validation->run()) {
                 $update_data = array(
                     'nama_supplier' => $this->input->post('nama_supplier'),
                     'alamat' => $this->input->post('alamat'),
-                    'no_hp' => $this->input->post('no_hp'),
+                    'no_telepon' => $this->input->post('no_telepon'),
                     'email' => $this->input->post('email'),
                     'keterangan' => $this->input->post('keterangan'),
                     'status' => $this->input->post('status')

@@ -81,9 +81,9 @@ class Waste_model extends CI_Model {
         $stats['total_waste'] = $this->db->count_all('waste_management');
         
         // Total value of waste
-        $this->db->select_sum('total_nilai_waste');
+        $this->db->select_sum('total_nilai');
         $result = $this->db->get('waste_management')->row();
-        $stats['total_value'] = $result->total_nilai_waste ?: 0;
+        $stats['total_value'] = $result->total_nilai ?: 0;
         
         // Pending waste
         $stats['pending_waste'] = $this->db->where('status', 'pending')->count_all_results('waste_management');
@@ -171,7 +171,7 @@ class Waste_model extends CI_Model {
 
     // Get monthly waste report
     public function get_monthly_report($year, $month) {
-        $this->db->select('wc.nama_kategori, SUM(wm.jumlah_waste) as total_jumlah, SUM(wm.total_nilai_waste) as total_nilai, COUNT(wm.id) as total_record');
+        $this->db->select('wc.nama_kategori, SUM(wm.jumlah) as total_jumlah, SUM(wm.total_nilai) as total_nilai, COUNT(wm.id) as total_record');
         $this->db->from('waste_management wm');
         $this->db->join('waste_categories wc', 'wm.kategori_id = wc.id', 'left');
         $this->db->where('YEAR(wm.tanggal_waste)', $year);
@@ -185,7 +185,7 @@ class Waste_model extends CI_Model {
 
     // Get top waste categories
     public function get_top_categories($limit = 5) {
-        $this->db->select('wc.nama_kategori, SUM(wm.total_nilai_waste) as total_nilai, COUNT(wm.id) as total_record');
+        $this->db->select('wc.nama_kategori, SUM(wm.total_nilai) as total_nilai, COUNT(wm.id) as total_record');
         $this->db->from('waste_management wm');
         $this->db->join('waste_categories wc', 'wm.kategori_id = wc.id', 'left');
         $this->db->where('wm.status', 'approved');

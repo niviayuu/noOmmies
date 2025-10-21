@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initDeleteConfirm();
     initNotifications();
     initFormValidation();
+    
+    // Disable smooth scroll globally
+    document.documentElement.style.scrollBehavior = 'auto';
+    document.body.style.scrollBehavior = 'auto';
 });
 
 // ============================================================
@@ -26,26 +30,46 @@ function initSidebar() {
         });
     }
 
-    // Prevent scroll jump on menu clicks
+    // Handle menu link clicks properly - NO SWIPE VERSION
     const menuLinks = document.querySelectorAll('.sidebar-menu a');
     menuLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Prevent default scroll behavior
-            e.preventDefault();
-            
-            // Get the href
             const href = this.getAttribute('href');
             
-            // If it's a valid URL, navigate to it
-            if (href && href !== '#' && !href.includes('javascript:')) {
+            // Only prevent default for special cases (like logout modal)
+            if (href === '#' || href.includes('javascript:')) {
+                e.preventDefault();
+                return;
+            }
+            
+            // For normal navigation, completely prevent any scroll behavior
+            if (href && href !== '#') {
+                // Prevent all default behaviors
+                e.preventDefault();
+                e.stopPropagation();
+                
                 // Remove active class from all links
                 menuLinks.forEach(l => l.classList.remove('active'));
                 
                 // Add active class to clicked link
                 this.classList.add('active');
                 
-                // Navigate to the URL
-                window.location.href = href;
+                // Force disable scroll behavior
+                document.documentElement.style.scrollBehavior = 'auto';
+                document.body.style.scrollBehavior = 'auto';
+                
+                // Store current scroll position
+                const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                
+                // Navigate immediately without any scroll effects
+                setTimeout(() => {
+                    window.location.href = href;
+                }, 50);
+                
+                // Prevent any scroll restoration
+                if ('scrollRestoration' in history) {
+                    history.scrollRestoration = 'manual';
+                }
             }
         });
     });

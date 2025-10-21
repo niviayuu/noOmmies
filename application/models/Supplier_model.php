@@ -51,7 +51,7 @@ class Supplier_model extends CI_Model {
     public function search($keyword) {
         $this->db->like('nama_supplier', $keyword);
         $this->db->or_like('alamat', $keyword);
-        $this->db->or_like('no_hp', $keyword);
+        $this->db->or_like('no_telepon', $keyword);
         $this->db->where('status', 'active');
         $query = $this->db->get('supplier');
         return $query->result();

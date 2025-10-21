@@ -18,10 +18,10 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: auto !important;
 }
 
 html {
-    scroll-behavior: smooth;
     overflow-x: hidden;
 }
 
@@ -29,8 +29,10 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f4f6f9;
     color: #333;
-    scroll-behavior: smooth;
     overflow-x: hidden;
+    scroll-behavior: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
 }
 
 /* ============================================================
@@ -49,7 +51,9 @@ body {
     overflow-x: hidden;
     z-index: 1000;
     box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    scroll-behavior: smooth;
+    scroll-behavior: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
 }
 
 .sidebar-header {
@@ -95,6 +99,25 @@ body {
     border-left: 4px solid white;
 }
 
+/* Prevent scroll jump on menu clicks */
+.sidebar-menu a {
+    scroll-behavior: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+}
+
+/* Prevent all scroll behavior on sidebar menu */
+.sidebar-menu {
+    scroll-behavior: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
+}
+
+/* Prevent scroll jump on all links */
+a {
+    scroll-behavior: auto !important;
+}
+
 .sidebar-menu i {
     margin-right: 10px;
     width: 20px;
@@ -116,6 +139,9 @@ body {
 .main-content {
     margin-left: var(--sidebar-width);
     min-height: 100vh;
+    scroll-behavior: auto !important;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: none;
 }
 
 /* ============================================================

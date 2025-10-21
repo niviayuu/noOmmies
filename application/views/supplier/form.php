@@ -23,10 +23,10 @@
         
         <div class="form-group">
             <label class="form-label"><i class="fas fa-phone"></i> No HP <span style="color: red;">*</span></label>
-            <input type="text" name="no_hp" class="form-control" 
-                   value="<?php echo isset($supplier) ? $supplier->no_hp : set_value('no_hp'); ?>" 
+            <input type="text" name="no_telepon" class="form-control" 
+                   value="<?php echo isset($supplier) ? $supplier->no_telepon : set_value('no_telepon'); ?>" 
                    placeholder="Masukkan nomor HP" required>
-            <?php echo form_error('no_hp', '<small class="text-danger">', '</small>'); ?>
+            <?php echo form_error('no_telepon', '<small class="text-danger">', '</small>'); ?>
         </div>
         
         <div class="form-group">

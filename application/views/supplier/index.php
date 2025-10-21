@@ -25,7 +25,7 @@
                         <td><?php echo $no++; ?></td>
                         <td><?php echo $supplier->nama_supplier; ?></td>
                         <td><?php echo $supplier->alamat ?: '-'; ?></td>
-                        <td><?php echo $supplier->no_hp; ?></td>
+                        <td><?php echo $supplier->no_telepon ?: '-'; ?></td>
                         <td><?php echo $supplier->email ?: '-'; ?></td>
                         <td>
                             <?php if ($supplier->status == 'active'): ?>

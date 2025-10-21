@@ -22,7 +22,7 @@
             </tr>
             <tr>
                 <td style="padding: 10px; font-weight: 600;">No HP</td>
-                <td style="padding: 10px;"><?php echo $supplier->no_hp; ?></td>
+                <td style="padding: 10px;"><?php echo $supplier->no_telepon ?: '-'; ?></td>
             </tr>
             <tr>
                 <td style="padding: 10px; font-weight: 600;">Email</td>
