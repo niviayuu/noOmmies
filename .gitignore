@@ -1,32 +1,41 @@
-.DS_Store
-
+# CodeIgniter
 application/cache/*
-!application/cache/index.html
-
 application/logs/*
-!application/logs/index.html
+application/session/*
+application/tmp/*
+application/uploads/*
+application/config/database.php
 
-!application/*/.htaccess
+# System files
+.DS_Store
+Thumbs.db
 
-composer.lock
-tests/mocks/database/ci_test.sqlite
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
 
-user_guide_src/build/*
-user_guide_src/cilexer/build/*
-user_guide_src/cilexer/dist/*
-user_guide_src/cilexer/pycilexer.egg-info/*
-/vendor/
+# Temporary files
+*.tmp
+*.temp
+*.log
 
-# IDE Files
-#-------------------------
-/nbproject/
-.idea/*
+# Node modules (jika ada)
+node_modules/
 
-## Sublime Text cache files
-*.tmlanguage.cache
-*.tmPreferences.cache
-*.stTheme.cache
-*.sublime-workspace
-*.sublime-project
-/tests/tests/
-/tests/results/
+# Composer
+vendor/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Database files (kecuali yang di database/db/)
+database/*.sql
+!database/db/*.sql
+
+# Backup files
+*.bak
+*.backup
